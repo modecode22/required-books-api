@@ -1,0 +1,61 @@
+{
+  "name": "required-books-api",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy --minify",
+    "cf-typegen": "wrangler types --env-interface CloudflareBindings",
+    "db:push": "drizzle-kit push --config=drizzle.config.ts",
+    "db:migrate": "node -r esbuild-register ./src/db/migrate.ts",
+    "db:generate": "drizzle-kit generate --config=drizzle.config.ts",
+    "db:studio": "drizzle-kit studio",
+    "migrate:local": "wrangler d1 migrations apply books-api --local",
+    "migrate:remote": "wrangler d1 migrations apply books-api",
+    "test:email": "tsx src/scripts/test-email.ts",
+    "preview-email": "email dev --dir src/services/email/templates"
+  },
+  "dependencies": {
+    "@cloudflare/workers-types": "^4.20250429.0",
+    "@hono/zod-openapi": "^0.19.6",
+    "@react-email/components": "^0.0.41",
+    "@react-email/render": "^1.1.2",
+    "@scalar/hono-api-reference": "^0.8.10",
+    "canvas": "^3.1.0",
+    "dompurify": "^3.2.6",
+    "dotenv": "^16.5.0",
+    "dotenv-expand": "^12.0.2",
+    "drizzle-kit": "^0.31.0",
+    "drizzle-orm": "^0.43.1",
+    "drizzle-zod": "^0.7.1",
+    "hono": "^4.7.8",
+    "hono-pino": "^0.8.0",
+    "html2canvas": "^1.4.1",
+    "jsdom": "^26.1.0",
+    "jspdf": "^3.0.1",
+    "jspdf-autotable": "^5.0.2",
+    "nanoid": "^5.1.5",
+    "pino": "^9.6.0",
+    "pino-pretty": "^13.0.0",
+    "puppeteer": "^24.9.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "react-email": "^4.0.15",
+    "resend": "^4.5.1",
+    "stoker": "^1.4.2",
+    "zod": "^3.24.4"
+  },
+  "devDependencies": {
+    "@types/jsdom": "^21.1.7",
+    "@types/node": "^22.15.3",
+    "@types/puppeteer": "^7.0.4",
+    "@types/react": "^19.1.5",
+    "tsc-alias": "^1.8.16",
+    "tsx": "^4.19.4",
+    "typescript": "^5.8.3",
+    "wrangler": "^4.13.2"
+  },
+    "build": {
+    "external": ["puppeteer", "typescript", "cosmiconfig"]
+  }
+}
