@@ -77,7 +77,7 @@ Environment = "development"
 npm run cf-typegen
 
 # Run database migrations (if any)
-npx drizzle-kit push:sqlite
+npm run db:push
 ```
 
 ## 🏃‍♂️ Development
